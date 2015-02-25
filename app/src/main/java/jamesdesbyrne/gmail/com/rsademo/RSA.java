@@ -16,13 +16,14 @@ import javax.crypto.NoSuchPaddingException;
  * Created by james on 25/02/15.
  * - Encrypts messages using RSA
  * - Decrypts messages using RSA
+ * - Generates public and private keys
  */
 public class RSA {
 
     // Variables used throughtout program
     private KeyPairGenerator kpgen;
     private KeyPair kp;
-    private Cipher ciph1, ciph2;
+    private Cipher ciph1;
     private byte [] encBytes,decBytes;
     private String enc, dec;
 
@@ -50,8 +51,11 @@ public class RSA {
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
+
         // gets the existing keys
         Keys k = new Keys();
+        //Checks that a key exists
+        if(k.pubKey == null || k.priKey == null) genKeys();
 
         // Uses RSA
         // Sets encryption mode and the constant to use
@@ -74,6 +78,8 @@ public class RSA {
 
         // gets the existing keys
         Keys k = new Keys();
+        //Checks that a key exists
+        if(k.pubKey == null || k.priKey == null) genKeys();
 
         // Uses RSA
         // Sets decryption mode and the constant to use
