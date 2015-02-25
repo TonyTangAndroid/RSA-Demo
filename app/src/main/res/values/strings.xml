@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">RSA Demo</string>
+
+
+    <string name="title_section1">RSA Explained</string>
+    <string name="title_section2">RSA Demo</string>
+    <string name="title_section3">Useful Tools</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="genNum">New Keys</string>
+    <string name="enc">Encrypt</string>
+    <string name="dec">Decrypt</string>
+    <string name="priKey">Private Key : </string>
+    <string name="pubKey">Public Key : </string>
+    <string name="exNum1">3045357</string>
+    <string name="exNum2">1546093</string>
+    <string name="exText">Put text here to be encrypted/decrypted</string>
+
+    <string name="explanation">
+RSA is a public key encryption system that gets its security from the difficulty of factoring large numbers. This is the so-called trap door.\n
+Two different, but intimately related, numbers are used for the encryption and decryption. The public key is used to encrypt the message, but it can not be used to decrypt the message.\n
+The same is true for the private key. It is used to decrypt only.\n
+\n
+How does this work, and where is the trap door? Well, to generate the two keys choose 2 large prime numbers p and q. First compute and save the product of p and q:\n
+\n
+<b>n = p x q</b>\n
+\n
+Now, randomly select a number e such that e and ((p - 1) x (q - 1)) have no common factors, i.e., they are relatively prime. Now, find a d (usually computed with Euclids algorithm) such that\n
+\n
+<b>e x d ≡ 1 mod ((p - 1) x (q - 1))</b>\n
+\n
+Note that d shares no common factors with n, either. Publish e and n, they are the public key; d is the secret key that should not be revealed, and discard but never reveal p and q.\n
+\n
+Now to encrypt a plain message let\'s call it \'pm\' into an secret message let\'s call that sm you just do this:\n
+\n
+<b>sm = pm^e (mod n)</b>\n
+\n
+To decrypt you just do this:\n
+\n
+<b>pm = sm^d (mod n)</b>\n
+\n
+Now, the keys are symmetric in the sense that you can encrypt with either key, and decrypt with the other key not used for the encryption. Let\'s try an example.\n
+\n
+<b>p = 47\n
+q = 71\n
+n = p x q = 47 x 71 = 3337</b>\n
+\n
+e must be relatively prime to\n<b>((p - 1) x (q - 1))</b>\n
+<b>(p - 1) x (q - 1) = 3220</b>, so choose e at random with that in mind. I choose\n
+\n
+<b>e = 79</b>\n
+\n
+Now, find a d such that\n
+<b>e x d = 1 mod 3220\n
+\n
+d = 1019</b>\n
+\n
+e, n are the public key, I keep d a secret and discard p and q.\n
+\n
+To encrypt this message 6882326879666683, I\'ll break it into small blocks (easier to do the math!)\n
+<b>\n
+pm1 = 688\n
+pm2 = 232\n
+pm3 = 687\n
+pm4 = 966\n
+pm5 = 668\n
+pm6 = 3\n
+</b>\n
+To encrypt pm1 we do\n
+<b>\n
+688^79 (mod 3337) = 1570 = sm1\n
+</b>\n
+Doing this for the rest of the message I string the sm\'s together like so:\n
+<b>\n
+1570 2756 2714 2276 2423 158\n
+</b>\n
+To decrypt I just do the reverse:\n
+<b>\n
+1570^1019 (mod 3337) = 688 = pm1\n
+</b>\n
+Now if you have *only* e and n can you can you calculate d? You can if you are able to fully factor n and so recover p and q. How easy is it to factor n?\n
+That depends on how big n is this is the trap door. In actual practice how big are the numbers we are talking about? Anywhere from 200 to 1000 digits.\n
+If I give you a number 1000 digits long can you quickly factor it? So far, the answer is no. There is as yet no publicly known way to factor numbers that large quickly.
+    </string>
+
+</resources>

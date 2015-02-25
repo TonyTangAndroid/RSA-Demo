@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/priKey"
+        android:id="@+id/priKeyTextView"
+        android:layout_marginTop="118dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="58dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/pubKey"
+        android:id="@+id/pubKeyTextView2"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/priKeyTextView"
+        android:layout_alignEnd="@+id/priKeyTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/exNum1"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/priKeyTextView"
+        android:layout_toEndOf="@+id/pubKeyTextView2"
+        android:layout_marginStart="46dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/exNum2"
+        android:id="@+id/textView4"
+        android:layout_alignTop="@+id/pubKeyTextView2"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/textView4" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageEditText"
+        android:layout_alignTop="@+id/editText"
+        android:text="@string/exText"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignStart="@+id/pubKeyTextView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enc"
+        android:id="@+id/enc_dec_button"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/messageEditText"
+        android:layout_alignStart="@+id/messageEditText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/genNum"
+        android:id="@+id/newKeyButton"
+        android:layout_alignTop="@+id/enc_dec_button"
+        android:layout_alignEnd="@+id/messageEditText" />
+</RelativeLayout>
