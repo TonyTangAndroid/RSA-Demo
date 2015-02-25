@@ -46,9 +46,6 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
                                 getString(R.string.title_section3),
                         }),
                 this);
-        //Code for the demonstration starts here
-
-
     }
 
     @Override

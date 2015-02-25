@@ -1,9 +1,9 @@
 package jamesdesbyrne.gmail.com.rsademo;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.app.ActionBar;;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 
-public class activity_explanation extends ActionBarActivity implements ActionBar.OnNavigationListener {
+public class activity_explanation extends ActionBarActivity implements android.support.v7.app.ActionBar.OnNavigationListener {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -26,10 +26,10 @@ public class activity_explanation extends ActionBarActivity implements ActionBar
         setContentView(R.layout.activity_explanation);
 
         // Set up the action bar to show a dropdown list.
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
+        final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        actionBar.setDisplayShowTitleEnabled(false);
 
         // Set up the dropdown list navigation in the action bar.
 
@@ -45,11 +45,7 @@ public class activity_explanation extends ActionBarActivity implements ActionBar
                                 getString(R.string.title_section3),
                         }),
                 this);
-
-
     }
-
-
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
