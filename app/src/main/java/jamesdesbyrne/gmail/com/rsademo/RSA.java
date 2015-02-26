@@ -23,8 +23,8 @@ public class RSA {
     // Holds the cipher text
     private Cipher cipher;
 
-    private PrivateKey priKey;
-    private PublicKey pubKey;
+    private static PrivateKey priKey;
+    private static PublicKey pubKey;
 
     public String getPriKey(){
         return priKey.toString();

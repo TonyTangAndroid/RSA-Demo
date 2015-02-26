@@ -14,7 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  * Created by james on 24/02/15.
@@ -31,16 +36,17 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
     private TextView priString, pubString;
     private TextView priInt, pubInt;
     private Button encDec, newKey;
+    //Used for
+    // - Encrypting and Decrypting inputted text
+    // - Generating and storing new keys
+
+    private RSA rsa = new RSA();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsademo);
 
-        //Used for
-        // - Encrypting and Decrypting inputted text
-        // - Generating and storing new keys  
-        RSA rsa = new RSA();
 
         output = (EditText)findViewById(R.id.messageEditText);
         priString = (TextView)findViewById(R.id.priKeyTextView);
@@ -52,8 +58,11 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
         newKey.setOnClickListener(this);
 
         //Get the public and private keys
-        priInt.setText(rsa.getPriKey());
-        pubInt.setText(rsa.getPubKey());
+        try {
+            initalKeys();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         // Set up the action bar to show a dropdown list.
         final ActionBar actionBar = getSupportActionBar();
@@ -74,6 +83,22 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
                                 getString(R.string.title_section3),
                         }),
                 this);
+    }
+
+    //Gets the new keys for the first time screen is opened
+    public void initalKeys() throws NoSuchAlgorithmException {
+        //Checks if the textviews already contain text
+        if (priInt.getText() == null || pubInt.getText() == null ){
+
+            //If not it checks that keys exist
+            if (rsa.getPriKey() == null || rsa.getPubKey() == null) {
+                //Generates new keys if they dont exist
+                rsa.genKeys();
+            }
+            //fills textviews with the correct Key
+            priInt.setText(rsa.getPriKey());
+            pubInt.setText(rsa.getPubKey());
+        }
     }
 
     @Override
@@ -126,9 +151,51 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
         return true;
     }
 
+    /*
+    * Handles the functionality of the buttons
+    * Uses the current text of the button to determine whether to encrypt of decrypt
+    * the message
+    * if (Encrypt then rsa.encrypt) else vice versa
+    * it then changes the text to the inverse operation Enc <-> Dec
+    *
+    * if the new key button is pressed it generates new keys and
+    * sets the text of priString and pubString
+    * */
     @Override
     public void onClick(View v) {
-
+        if (v.getId() == R.id.enc_dec_button){
+            String temp = encDec.getText().toString();
+            if (temp.equals("Encrypt")){
+                try {
+                    output.setText(rsa.encrypt(output.getText().toString()));
+                    encDec.setText("Decrypt");
+                } catch (NoSuchPaddingException |
+                        NoSuchAlgorithmException | InvalidKeyException |
+                        BadPaddingException | IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    output.setText(rsa.decrypt(output.getText().toString()));
+                    encDec.setText("Encrypt");
+                } catch (NoSuchPaddingException |
+                        NoSuchAlgorithmException | InvalidKeyException |
+                        BadPaddingException | IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (v.getId() == R.id.newKeyButton){
+            try {
+                //Generates new Keys
+                rsa.genKeys();
+                //fills textviews with the correct Key
+                priInt.setText(rsa.getPriKey());
+                pubInt.setText(rsa.getPubKey());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -159,8 +226,8 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity_explanation, container, false);
-            return rootView;
+            //View rootView = inflater.inflate(R.layout.fragment_activity_explanation, container, false);
+            return inflater.inflate(R.layout.fragment_activity_explanation, container, false);
         }
     }
 }
