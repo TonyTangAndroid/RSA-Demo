@@ -10,11 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by james on 24/02/15.
  */
-public class activity_rsademo extends ActionBarActivity implements ActionBar.OnNavigationListener {
+public class activity_rsademo extends ActionBarActivity implements ActionBar.OnNavigationListener, View.OnClickListener {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -22,10 +27,33 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
      */
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
+    private EditText output;
+    private TextView priString, pubString;
+    private TextView priInt, pubInt;
+    private Button encDec, newKey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsademo);
+
+        //Used for
+        // - Encrypting and Decrypting inputted text
+        // - Generating and storing new keys  
+        RSA rsa = new RSA();
+
+        output = (EditText)findViewById(R.id.messageEditText);
+        priString = (TextView)findViewById(R.id.priKeyTextView);
+        pubString = (TextView)findViewById(R.id.pubKeyTextView);
+        priInt = (TextView)findViewById(R.id.textViewPriInt);
+        pubInt = (TextView)findViewById(R.id.textViewPubInt);
+
+        encDec.setOnClickListener(this);
+        newKey.setOnClickListener(this);
+
+        //Get the public and private keys
+        priInt.setText(rsa.getPriKey());
+        pubInt.setText(rsa.getPubKey());
 
         // Set up the action bar to show a dropdown list.
         final ActionBar actionBar = getSupportActionBar();
@@ -96,6 +124,11 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     /**

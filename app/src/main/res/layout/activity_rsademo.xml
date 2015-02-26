@@ -18,19 +18,20 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/pubKey"
-        android:id="@+id/pubKeyTextView2"
+        android:id="@+id/pubKeyTextView"
         android:layout_marginTop="44dp"
         android:layout_below="@+id/priKeyTextView"
-        android:layout_alignEnd="@+id/priKeyTextView" />
+        android:layout_alignEnd="@+id/priKeyTextView"
+        android:layout_alignStart="@+id/priKeyTextView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/exNum1"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewPriInt"
         android:layout_alignTop="@+id/priKeyTextView"
-        android:layout_toEndOf="@+id/pubKeyTextView2"
+        android:layout_toEndOf="@+id/pubKeyTextView"
         android:layout_marginStart="46dp" />
 
     <TextView
@@ -38,25 +39,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/exNum2"
-        android:id="@+id/textView4"
-        android:layout_alignTop="@+id/pubKeyTextView2"
-        android:layout_alignStart="@+id/textView3" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/textView4" />
+        android:id="@+id/textViewPubInt"
+        android:layout_alignTop="@+id/pubKeyTextView"
+        android:layout_alignStart="@+id/textViewPriInt" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/messageEditText"
-        android:layout_alignTop="@+id/editText"
-        android:text="@string/exText"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_alignStart="@+id/pubKeyTextView2" />
+        android:layout_alignStart="@+id/pubKeyTextView"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/textViewPubInt"
+        android:hint="@string/exText" />
 
     <Button
         android:layout_width="wrap_content"

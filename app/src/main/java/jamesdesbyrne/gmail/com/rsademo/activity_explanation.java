@@ -124,8 +124,8 @@ public class activity_explanation extends ActionBarActivity implements android.s
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity_explanation, container, false);
-            return rootView;
+            //View rootView = inflater.inflate(R.layout.fragment_activity_explanation, container, false);
+            return inflater.inflate(R.layout.fragment_activity_explanation, container, false);
         }
     }
 

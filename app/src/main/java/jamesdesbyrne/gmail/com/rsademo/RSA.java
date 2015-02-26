@@ -20,49 +20,53 @@ import javax.crypto.NoSuchPaddingException;
  */
 public class RSA {
 
-    // Variables used throughtout program
-    private KeyPairGenerator kpgen;
-    private KeyPair kp;
-    private Cipher ciph1;
-    private byte [] encBytes,decBytes;
-    private String enc, dec;
+    // Holds the cipher text
+    private Cipher cipher;
 
-    private static class Keys{
-        PrivateKey priKey;
-        PublicKey pubKey;
+    private PrivateKey priKey;
+    private PublicKey pubKey;
+
+    public String getPriKey(){
+        return priKey.toString();
+    }
+    public String getPubKey(){
+        return pubKey.toString();
     }
 
-    public Keys genKeys() throws NoSuchAlgorithmException {
+    public void genKeys() throws NoSuchAlgorithmException {
+        KeyPairGenerator kpgen;
+        KeyPair kp;
         // Tells KeyPairGenerator to use RSA
-        // Initialises the pair to be a 1024 bit prime number
+        // Initialises the pair to be a 4 bit prime number
+        // -->This is deliberately a small number to accommodate screen size
         // Generate the public and private Keys
         kpgen = KeyPairGenerator.getInstance("RSA");
-        kpgen.initialize(1024);
+        kpgen.initialize(4);
         kp = kpgen.genKeyPair();
 
-        Keys k = new Keys();
-        k.pubKey = kp.getPublic();
-        k.priKey = kp.getPrivate();
-
-        return k;
+        pubKey = kp.getPublic();
+        priKey = kp.getPrivate();
     }
 
-    public String Encrypt(final String plainText)
+    public String encrypt(final String plainText)
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        // gets the existing keys
-        Keys k = new Keys();
+        // Variables for taking in the output and
+        // returning a useful output
+        byte [] encBytes;
+        String enc;
+
         //Checks that a key exists
-        if(k.pubKey == null || k.priKey == null) genKeys();
+        if(pubKey == null || priKey == null) genKeys();
 
         // Uses RSA
         // Sets encryption mode and the constant to use
         // Encrypts the message using RSA and the public Key
-        ciph1 = Cipher.getInstance("RSA");
-        ciph1.init(Cipher.ENCRYPT_MODE, k.pubKey);
-        encBytes = ciph1.doFinal(plainText.getBytes());
+        cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+        encBytes = cipher.doFinal(plainText.getBytes());
         enc = new String(encBytes);
 
         //Returns the encrypted text
@@ -71,22 +75,25 @@ public class RSA {
 
     // Decrypts the message using RSA
     // The keypair was generated above when the
-    public String RSADecrypt (final String result)
+    public String decrypt (final String result)
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        // gets the existing keys
-        Keys k = new Keys();
+        // Variables for taking in the output and
+        // returning a useful output
+        byte [] decBytes;
+        String dec;
+
         //Checks that a key exists
-        if(k.pubKey == null || k.priKey == null) genKeys();
+        if(pubKey == null || priKey == null) genKeys();
 
         // Uses RSA
         // Sets decryption mode and the constant to use
         // Decrypts the message using RSA and the private Key
-        ciph1=Cipher.getInstance("RSA");
-        ciph1.init(Cipher.DECRYPT_MODE, k.priKey);
-        decBytes = ciph1.doFinal(result.getBytes());
+        cipher=Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, priKey);
+        decBytes = cipher.doFinal(result.getBytes());
         dec = new String(decBytes);
 
         //returns the decrypted string
