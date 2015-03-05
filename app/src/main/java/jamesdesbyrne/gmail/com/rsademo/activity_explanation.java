@@ -1,6 +1,7 @@
 package jamesdesbyrne.gmail.com.rsademo;
 
 import android.app.ActionBar;;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -32,7 +33,6 @@ public class activity_explanation extends ActionBarActivity implements android.s
         actionBar.setDisplayShowTitleEnabled(false);
 
         // Set up the dropdown list navigation in the action bar.
-
         actionBar.setListNavigationCallbacks(
                 // Specify a SpinnerAdapter to populate the dropdown list.
                 new ArrayAdapter<String>(
@@ -45,10 +45,11 @@ public class activity_explanation extends ActionBarActivity implements android.s
                                 getString(R.string.title_section3),
                         }),
                 this);
+
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         // Restore the previously serialized current dropdown position.
         if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
             getSupportActionBar().setSelectedNavigationItem(

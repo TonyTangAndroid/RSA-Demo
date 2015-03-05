@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,10 @@ import javax.crypto.NoSuchPaddingException;
 
 /**
  * Created by james on 24/02/15.
+ * Uses
+ * - Creates the activity_rsademo
+ * - Allows the user to encrypt and decrypt data
+ * - Allows the user to generate new keys and displays them
  */
 public class activity_rsademo extends ActionBarActivity implements ActionBar.OnNavigationListener, View.OnClickListener {
 
@@ -33,13 +38,11 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
     private EditText output;
-    private TextView priString, pubString;
     private TextView priInt, pubInt;
     private Button encDec, newKey;
     //Used for
     // - Encrypting and Decrypting inputted text
     // - Generating and storing new keys
-
     private RSA rsa = new RSA();
 
     @Override
@@ -49,10 +52,11 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
 
 
         output = (EditText)findViewById(R.id.messageEditText);
-        priString = (TextView)findViewById(R.id.priKeyTextView);
-        pubString = (TextView)findViewById(R.id.pubKeyTextView);
         priInt = (TextView)findViewById(R.id.textViewPriInt);
         pubInt = (TextView)findViewById(R.id.textViewPubInt);
+
+        encDec = (Button)findViewById(R.id.enc_dec_button);
+        newKey = (Button)findViewById(R.id.newKeyButton);
 
         encDec.setOnClickListener(this);
         newKey.setOnClickListener(this);
@@ -83,6 +87,7 @@ public class activity_rsademo extends ActionBarActivity implements ActionBar.OnN
                                 getString(R.string.title_section3),
                         }),
                 this);
+
     }
 
     //Gets the new keys for the first time screen is opened
