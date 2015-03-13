@@ -51,6 +51,7 @@
         android:layout_alignStart="@+id/pubKeyTextView"
         android:layout_centerVertical="true"
         android:layout_alignEnd="@+id/textViewPubInt"
+        android:inputType="textLongMessage"
         android:hint="@string/exText" />
 
     <Button

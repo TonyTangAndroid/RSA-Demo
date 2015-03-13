@@ -9,7 +9,8 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="action_settings">Settings</string>
-
+    <string name="action_explanation">Explanation</string>
+    <string name="action_demo">Demo</string>
 
     <string name="genNum">New Keys</string>
     <string name="enc">Encrypt</string>
@@ -87,5 +88,6 @@ Now if you have *only* e and n can you can you calculate d? You can if you are a
 That depends on how big n is this is the trap door. In actual practice how big are the numbers we are talking about? Anywhere from 200 to 1000 digits.\n
 If I give you a number 1000 digits long can you quickly factor it? So far, the answer is no. There is as yet no publicly known way to factor numbers that large quickly.
     </string>
+
 
 </resources>

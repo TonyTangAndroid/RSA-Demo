@@ -38,10 +38,10 @@ public class RSA {
         KeyPair kp;
         // Tells KeyPairGenerator to use RSA
         // Initialises the pair to be a 4 bit prime number
-        // -->This is deliberately a small number to accommodate screen size
+        // --> This is deliberately a small number to accommodate screen size
         // Generate the public and private Keys
         kpgen = KeyPairGenerator.getInstance("RSA");
-        kpgen.initialize(4);
+        kpgen.initialize(128);
         kp = kpgen.genKeyPair();
 
         pubKey = kp.getPublic();
@@ -53,7 +53,7 @@ public class RSA {
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        // Variables for taking in the output and
+        // Variables for taking input and
         // returning a useful output
         byte [] encBytes;
         String enc;
@@ -80,7 +80,7 @@ public class RSA {
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
-        // Variables for taking in the output and
+        // Variables for taking input and
         // returning a useful output
         byte [] decBytes;
         String dec;
