@@ -26,8 +26,13 @@ public class RSA {
     private static PrivateKey priKey;
     private static PublicKey pubKey;
 
+    // Variables for taking input and
+    // returning a useful output
+    byte [] encBytes, decBytes;
+    String enc, dec;
+
     public String getPriKey(){
-        return priKey.toString();
+        return priKey.getFormat();
     }
     public String getPubKey(){
         return pubKey.toString();
@@ -41,7 +46,7 @@ public class RSA {
         // --> This is deliberately a small number to accommodate screen size
         // Generate the public and private Keys
         kpgen = KeyPairGenerator.getInstance("RSA");
-        kpgen.initialize(128);
+        kpgen.initialize(32);
         kp = kpgen.genKeyPair();
 
         pubKey = kp.getPublic();
@@ -52,11 +57,6 @@ public class RSA {
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-
-        // Variables for taking input and
-        // returning a useful output
-        byte [] encBytes;
-        String enc;
 
         //Checks that a key exists
         if(pubKey == null || priKey == null) genKeys();
@@ -74,16 +74,10 @@ public class RSA {
     }
 
     // Decrypts the message using RSA
-    // The keypair was generated above when the
-    public String decrypt (final String result)
+    public String decrypt ()
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-
-        // Variables for taking input and
-        // returning a useful output
-        byte [] decBytes;
-        String dec;
 
         //Checks that a key exists
         if(pubKey == null || priKey == null) genKeys();
@@ -93,7 +87,7 @@ public class RSA {
         // Decrypts the message using RSA and the private Key
         cipher=Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, priKey);
-        decBytes = cipher.doFinal(result.getBytes());
+        decBytes = cipher.doFinal(encBytes);
         dec = new String(decBytes);
 
         //returns the decrypted string

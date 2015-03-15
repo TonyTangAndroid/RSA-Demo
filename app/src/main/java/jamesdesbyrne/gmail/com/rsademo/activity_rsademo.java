@@ -44,6 +44,14 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsademo);
 
+
+        /**
+         * ERROR:
+         * WHEN THE SCREEN IS SWITCHED BACK THE
+         * NEW KEYS THAT WHERE GENERATED ARE REPLACED
+         * BY THE EXISTING STRINGS IN STINGS.XML
+         */
+
         // Assigns variables to there views
         output = (EditText)findViewById(R.id.messageEditText);
         priInt = (TextView)findViewById(R.id.textViewPriInt);
@@ -67,7 +75,7 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
     // Gets the new keys for the first time screen is opened
     public void initalKeys() throws NoSuchAlgorithmException {
         // Checks if the textviews already contain text
-        if (priInt.getText() == null || pubInt.getText() == null ){
+        if (priInt.getText() == null || priInt.getText() == "304535" ){
 
             // If not it checks that keys exist
             if (rsa.getPriKey() == null || rsa.getPubKey() == null) {
@@ -130,7 +138,7 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
                 }
             } else {
                 try {
-                    output.setText(rsa.decrypt(output.getText().toString()));
+                    output.setText(rsa.decrypt());
                     encDec.setText("Encrypt");
                 } catch (NoSuchPaddingException |
                         NoSuchAlgorithmException | InvalidKeyException |
