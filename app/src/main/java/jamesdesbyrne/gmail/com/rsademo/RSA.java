@@ -46,7 +46,7 @@ public class RSA {
         // --> This is deliberately a small number to accommodate screen size
         // Generate the public and private Keys
         kpgen = KeyPairGenerator.getInstance("RSA");
-        kpgen.initialize(32);
+        kpgen.initialize(1024);
         kp = kpgen.genKeyPair();
 
         pubKey = kp.getPublic();
