@@ -20,7 +20,7 @@
     <string name="exNum1">3045357</string>
     <string name="exNum2">1546093</string>
     <string name="exText">Put text here to be encrypted/decrypted</string>
-
+    <string name="split1">m</string>
 
     <string name="explanation">
 RSA is a public key encryption system that gets its security from the difficulty of factoring large numbers. This is the so-called trap door.\n
@@ -88,6 +88,7 @@ Now if you have *only* e and n can you can you calculate d? You can if you are a
 That depends on how big n is this is the trap door. In actual practice how big are the numbers we are talking about? Anywhere from 200 to 1000 digits.\n
 If I give you a number 1000 digits long can you quickly factor it? So far, the answer is no. There is as yet no publicly known way to factor numbers that large quickly.
     </string>
+
 
 
 </resources>

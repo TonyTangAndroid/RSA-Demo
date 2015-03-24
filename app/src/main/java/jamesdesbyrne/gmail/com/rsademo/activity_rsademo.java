@@ -44,14 +44,6 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsademo);
 
-
-        /**
-         * ERROR:
-         * WHEN THE SCREEN IS SWITCHED BACK THE
-         * NEW KEYS THAT WHERE GENERATED ARE REPLACED
-         * BY THE EXISTING STRINGS IN STINGS.XML
-         */
-
         // Assigns variables to there views
         output = (EditText)findViewById(R.id.messageEditText);
         priInt = (TextView)findViewById(R.id.textViewPriInt);
@@ -83,11 +75,40 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
                 rsa.genKeys();
             }
             // fills textviews with the correct Key
+
             priInt.setText(rsa.getPriKey());
             pubInt.setText(rsa.getPubKey());
         }
     }
 
+
+    /**
+     * Under construction fo the final release
+     *
+     */
+    public String buildString(boolean h){
+        if (h){
+            String[] splitter = rsa.getPriKey().split(getString(R.string.split1));
+            String format = splitter[0];
+            String mod = splitter[1];
+            splitter = mod.split(",");
+            mod = splitter[0];
+            String exp = splitter[1];
+
+            return format + " \n" + mod + " \n" + exp;
+
+
+        } else {
+            String[] splitter = rsa.getPubKey().split(getString(R.string.split1));
+            String format = splitter[0];
+            String mod = splitter[1];
+            splitter = mod.split(",");
+            mod = splitter[0];
+            String exp = splitter[1];
+
+            return format + " \n" + mod + " \n" + exp;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,11 +170,14 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
         }
         if (v.getId() == R.id.newKeyButton){
             try {
-                //Generates new Keys
+                rsa.setSize(32);
+                //Generates new Keys for displaying
                 rsa.genKeys();
                 //fills textviews with the correct Key
                 priInt.setText(rsa.getPriKey());
                 pubInt.setText(rsa.getPubKey());
+                rsa.setSize(1024);
+                rsa.genKeys();
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }

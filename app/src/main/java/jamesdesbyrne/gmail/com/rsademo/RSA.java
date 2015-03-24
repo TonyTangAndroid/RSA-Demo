@@ -30,6 +30,11 @@ public class RSA {
     // returning a useful output
     byte [] encBytes, decBytes;
     String enc, dec;
+    int size = 1024;
+
+    public void setSize(int _size) {
+        size = _size;
+    }
 
     public String getPriKey(){
         return priKey.getFormat();
@@ -46,7 +51,7 @@ public class RSA {
         // --> This is deliberately a small number to accommodate screen size
         // Generate the public and private Keys
         kpgen = KeyPairGenerator.getInstance("RSA");
-        kpgen.initialize(1024);
+        kpgen.initialize(size);
         kp = kpgen.genKeyPair();
 
         pubKey = kp.getPublic();
