@@ -1,72 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".activity_rsademo">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".activity_rsademo">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/priKey"
         android:id="@+id/priKeyTextView"
-        android:layout_marginTop="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/messageEditText" />
+        android:layout_alignStart="@+id/messageEditText"
+        android:layout_marginTop="37dp"
+        android:text="@string/priKey"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/pubKey"
         android:id="@+id/pubKeyTextView"
-        android:layout_below="@+id/priKeyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/priKeyTextView"
-        android:layout_marginTop="52dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/exNum1"
-        android:id="@+id/textViewPriInt"
         android:layout_below="@+id/priKeyTextView"
-        android:layout_alignStart="@+id/priKeyTextView" />
+        android:layout_marginTop="52dp"
+        android:text="@string/pubKey"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
+        android:id="@+id/textViewPriInt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/exNum2"
+        android:layout_alignStart="@+id/priKeyTextView"
+        android:layout_below="@+id/priKeyTextView"
+        android:text="@string/exNum1"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
         android:id="@+id/textViewPubInt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pubKeyTextView"
         android:layout_below="@+id/pubKeyTextView"
-        android:layout_alignStart="@+id/pubKeyTextView" />
+        android:text="@string/exNum2"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <EditText
+        android:id="@+id/messageEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/messageEditText"
-        android:inputType="textLongMessage"
-        android:hint="@string/exText"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:hint="@string/exText"
+        android:inputType="textLongMessage"
+        android:text="123"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enc"
         android:id="@+id/enc_dec_button"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/messageEditText"
-        android:layout_alignStart="@+id/messageEditText" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/genNum"
+        android:layout_alignStart="@+id/messageEditText"
+        android:layout_below="@+id/messageEditText"
+        android:layout_marginTop="60dp"
+        android:text="@string/enc"/>
+
+    <Button
         android:id="@+id/newKeyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/messageEditText"
         android:layout_alignTop="@+id/enc_dec_button"
-        android:layout_alignEnd="@+id/messageEditText" />
+        android:text="@string/genNum"/>
 </RelativeLayout>

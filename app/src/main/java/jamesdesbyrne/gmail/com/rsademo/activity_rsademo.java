@@ -1,11 +1,8 @@
 package jamesdesbyrne.gmail.com.rsademo;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,12 +38,12 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_rsademo);
 
         // Assigns variables to there views
-        output = (EditText) findViewById(R.id.messageEditText);
-        priInt = (TextView) findViewById(R.id.textViewPriInt);
-        pubInt = (TextView) findViewById(R.id.textViewPubInt);
+        output = findViewById(R.id.messageEditText);
+        priInt = findViewById(R.id.textViewPriInt);
+        pubInt = findViewById(R.id.textViewPubInt);
 
-        encDec = (Button) findViewById(R.id.enc_dec_button);
-        newKey = (Button) findViewById(R.id.newKeyButton);
+        encDec = findViewById(R.id.enc_dec_button);
+        newKey = findViewById(R.id.newKeyButton);
 
         encDec.setOnClickListener(this);
         newKey.setOnClickListener(this);
@@ -105,29 +102,6 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_explanation, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        /*
-         * Handle action bar item clicks here. The action bar will
-         * automatically handle clicks on the Home/Up button, so long
-         * as you specify a parent activity in AndroidManifest.xml.
-         */
-        int id = item.getItemId();
-
-        if (id == R.id.action_explanation) {
-            Intent intent = new Intent(this, activity_explanation.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
 
     /*
     * Handles the functionality of the buttons
