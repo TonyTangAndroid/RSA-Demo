@@ -30,7 +30,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
     //Used for
     // - Encrypting and Decrypting inputted text
     // - Generating and storing new keys
-    private RSA rsa = new RSA();
+    private RSAUtil rsaUtil = new RSAUtil(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,14 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
         if (priInt.getText() == null || priInt.getText() == "304535") {
 
             // If not it checks that keys exist
-            if (rsa.getPriKey() == null || rsa.getPubKey() == null) {
+            if (rsaUtil.getPriKey() == null || rsaUtil.getPubKey() == null) {
                 //Generates new keys if they dont exist
-                rsa.genKeys();
+                rsaUtil.genKeys();
             }
             // fills textviews with the correct Key
 
-            priInt.setText(rsa.getPriKey());
-            pubInt.setText(rsa.getPubKey());
+            priInt.setText(rsaUtil.getPriKey());
+            pubInt.setText(rsaUtil.getPubKey());
         }
     }
 
@@ -80,7 +80,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
      */
     public String buildString(boolean h) {
         if (h) {
-            String[] splitter = rsa.getPriKey().split(getString(R.string.split1));
+            String[] splitter = rsaUtil.getPriKey().split(getString(R.string.split1));
             String format = splitter[0];
             String mod = splitter[1];
             splitter = mod.split(",");
@@ -91,7 +91,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
 
 
         } else {
-            String[] splitter = rsa.getPubKey().split(getString(R.string.split1));
+            String[] splitter = rsaUtil.getPubKey().split(getString(R.string.split1));
             String format = splitter[0];
             String mod = splitter[1];
             splitter = mod.split(",");
@@ -107,7 +107,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
     * Handles the functionality of the buttons
     * Uses the current text of the button to determine whether to encrypt of decrypt
     * the message
-    * if (Encrypt then rsa.encrypt) else vice versa
+    * if (Encrypt then rsaUtil.encrypt) else vice versa
     * it then changes the text to the inverse operation Enc <-> Dec
     *
     * if the new key button is pressed it generates new keys and
@@ -119,7 +119,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
             String temp = encDec.getText().toString();
             if (temp.equals("Encrypt")) {
                 try {
-                    output.setText(rsa.encrypt(output.getText().toString()));
+                    output.setText(rsaUtil.encrypt(output.getText().toString()));
                     encDec.setText("Decrypt");
                 } catch (NoSuchPaddingException |
                         NoSuchAlgorithmException | InvalidKeyException |
@@ -128,7 +128,7 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
                 }
             } else {
                 try {
-                    output.setText(rsa.decrypt());
+                    output.setText(rsaUtil.decrypt());
                     encDec.setText("Encrypt");
                 } catch (NoSuchPaddingException |
                         NoSuchAlgorithmException | InvalidKeyException |
@@ -139,14 +139,14 @@ public class activity_rsademo extends AppCompatActivity implements View.OnClickL
         }
         if (v.getId() == R.id.newKeyButton) {
             try {
-                rsa.setSize(32);
+                rsaUtil.setSize(32);
                 //Generates new Keys for displaying
-                rsa.genKeys();
+                rsaUtil.genKeys();
                 //fills textviews with the correct Key
-                priInt.setText(rsa.getPriKey());
-                pubInt.setText(rsa.getPubKey());
-                rsa.setSize(1024);
-                rsa.genKeys();
+                priInt.setText(rsaUtil.getPriKey());
+                pubInt.setText(rsaUtil.getPubKey());
+                rsaUtil.setSize(1024);
+                rsaUtil.genKeys();
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }

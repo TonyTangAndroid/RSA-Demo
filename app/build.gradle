@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 27
@@ -7,7 +18,7 @@ android {
     defaultConfig {
         applicationId "jamesdesbyrne.gmail.com.rsademo"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 22
         compileSdkVersion 27
         versionCode 1
         versionName "1.0"
