@@ -28,7 +28,7 @@ public class RSA {
 
     // Variables for taking input and
     // returning a useful output
-    byte [] encBytes, decBytes;
+    byte[] encBytes, decBytes;
     String enc, dec;
     int size = 1024;
 
@@ -36,10 +36,11 @@ public class RSA {
         size = _size;
     }
 
-    public String getPriKey(){
+    public String getPriKey() {
         return priKey.getFormat();
     }
-    public String getPubKey(){
+
+    public String getPubKey() {
         return pubKey.toString();
     }
 
@@ -64,7 +65,7 @@ public class RSA {
             BadPaddingException, IllegalBlockSizeException {
 
         //Checks that a key exists
-        if(pubKey == null || priKey == null) genKeys();
+        if (pubKey == null || priKey == null) genKeys();
 
         // Uses RSA
         // Sets encryption mode and the constant to use
@@ -79,18 +80,18 @@ public class RSA {
     }
 
     // Decrypts the message using RSA
-    public String decrypt ()
+    public String decrypt()
             throws NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
         //Checks that a key exists
-        if(pubKey == null || priKey == null) genKeys();
+        if (pubKey == null || priKey == null) genKeys();
 
         // Uses RSA
         // Sets decryption mode and the constant to use
         // Decrypts the message using RSA and the private Key
-        cipher=Cipher.getInstance("RSA");
+        cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, priKey);
         decBytes = cipher.doFinal(encBytes);
         dec = new String(decBytes);

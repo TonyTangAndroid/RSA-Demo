@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "jamesdesbyrne.gmail.com.rsademo"
-        minSdkVersion 19
-        targetSdkVersion 21
+        minSdkVersion 21
+        targetSdkVersion 27
+        compileSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -21,5 +22,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:27.1.1'
 }

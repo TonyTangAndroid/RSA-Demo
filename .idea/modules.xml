@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RSADemo.iml" filepath="$PROJECT_DIR$/RSADemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RSA-Demo.iml" filepath="$PROJECT_DIR$/RSA-Demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
-

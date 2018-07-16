@@ -3,14 +3,10 @@ package jamesdesbyrne.gmail.com.rsademo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +25,7 @@ import javax.crypto.NoSuchPaddingException;
  * - Allows the user to encrypt and decrypt data
  * - Allows the user to generate new keys and displays them
  */
-public class activity_rsademo extends ActionBarActivity implements  View.OnClickListener {
+public class activity_rsademo extends AppCompatActivity implements View.OnClickListener {
 
     private EditText output;
     private TextView priInt, pubInt;
@@ -45,12 +41,12 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
         setContentView(R.layout.activity_rsademo);
 
         // Assigns variables to there views
-        output = (EditText)findViewById(R.id.messageEditText);
-        priInt = (TextView)findViewById(R.id.textViewPriInt);
-        pubInt = (TextView)findViewById(R.id.textViewPubInt);
+        output = (EditText) findViewById(R.id.messageEditText);
+        priInt = (TextView) findViewById(R.id.textViewPriInt);
+        pubInt = (TextView) findViewById(R.id.textViewPubInt);
 
-        encDec = (Button)findViewById(R.id.enc_dec_button);
-        newKey = (Button)findViewById(R.id.newKeyButton);
+        encDec = (Button) findViewById(R.id.enc_dec_button);
+        newKey = (Button) findViewById(R.id.newKeyButton);
 
         encDec.setOnClickListener(this);
         newKey.setOnClickListener(this);
@@ -67,7 +63,7 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
     // Gets the new keys for the first time screen is opened
     public void initalKeys() throws NoSuchAlgorithmException {
         // Checks if the textviews already contain text
-        if (priInt.getText() == null || priInt.getText() == "304535" ){
+        if (priInt.getText() == null || priInt.getText() == "304535") {
 
             // If not it checks that keys exist
             if (rsa.getPriKey() == null || rsa.getPubKey() == null) {
@@ -84,10 +80,9 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
 
     /**
      * Under construction fo the final release
-     *
      */
-    public String buildString(boolean h){
-        if (h){
+    public String buildString(boolean h) {
+        if (h) {
             String[] splitter = rsa.getPriKey().split(getString(R.string.split1));
             String format = splitter[0];
             String mod = splitter[1];
@@ -126,7 +121,7 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
          */
         int id = item.getItemId();
 
-        if (id == R.id.action_explanation){
+        if (id == R.id.action_explanation) {
             Intent intent = new Intent(this, activity_explanation.class);
             startActivity(intent);
         }
@@ -146,9 +141,9 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
     * */
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.enc_dec_button){
+        if (v.getId() == R.id.enc_dec_button) {
             String temp = encDec.getText().toString();
-            if (temp.equals("Encrypt")){
+            if (temp.equals("Encrypt")) {
                 try {
                     output.setText(rsa.encrypt(output.getText().toString()));
                     encDec.setText("Decrypt");
@@ -168,7 +163,7 @@ public class activity_rsademo extends ActionBarActivity implements  View.OnClick
                 }
             }
         }
-        if (v.getId() == R.id.newKeyButton){
+        if (v.getId() == R.id.newKeyButton) {
             try {
                 rsa.setSize(32);
                 //Generates new Keys for displaying
