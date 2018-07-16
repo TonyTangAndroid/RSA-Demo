@@ -40,8 +40,8 @@ import hugo.weaving.DebugLog;
 @DebugLog
 public class RSAUtil {
 
-    public static final String PRIVATE_PEM = "private.pem";
-    public static final String PUBLIC_PEM = "public.pem";
+    public static final String PRIVATE_PEM = "2.pri";
+    public static final String PUBLIC_PEM = "2.pub";
     private final Context context;
     // Holds the cipher text
     private Cipher cipher;

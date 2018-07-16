@@ -10,7 +10,7 @@
 *.apk
 *.ap_
 .idea
-
+*.iml
 # Files for the Dalvik VM
 *.dex
 
